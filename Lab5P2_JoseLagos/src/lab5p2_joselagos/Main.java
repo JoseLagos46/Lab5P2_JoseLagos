@@ -6,6 +6,8 @@
 package lab5p2_joselagos;
 
 import com.sun.org.apache.xerces.internal.dom.ChildNode;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -33,6 +35,13 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         PopUp = new javax.swing.JPopupMenu();
+        Modificar = new javax.swing.JMenuItem();
+        Eliminar = new javax.swing.JMenuItem();
+        Listar = new javax.swing.JMenuItem();
+        jd_Mod = new javax.swing.JDialog();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_EquipoL = new javax.swing.JList<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -98,6 +107,52 @@ public class Main extends javax.swing.JFrame {
         btn_Agregar_ps = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_Equipo = new javax.swing.JTree();
+
+        Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
+        PopUp.add(Modificar);
+
+        Eliminar.setText("Eliminar");
+        PopUp.add(Eliminar);
+
+        Listar.setText("Listar");
+        PopUp.add(Listar);
+
+        jl_EquipoL.setModel(new DefaultListModel());
+        jl_EquipoL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_EquipoLMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jl_EquipoL);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jd_ModLayout = new javax.swing.GroupLayout(jd_Mod.getContentPane());
+        jd_Mod.getContentPane().setLayout(jd_ModLayout);
+        jd_ModLayout.setHorizontalGroup(
+            jd_ModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jd_ModLayout.setVerticalGroup(
+            jd_ModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
@@ -197,7 +252,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tf_Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jugadores", jPanel1);
@@ -288,7 +343,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(js_Copas_e, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(btn_Agregar_e, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Entrenadores", jPanel2);
@@ -406,7 +461,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tf_Titulo_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(btn_Agregar_p, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Preparadores", jPanel3);
@@ -516,7 +571,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tf_Especialidad_ps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(btn_Agregar_ps)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Psicologos", jPanel4);
@@ -531,6 +586,11 @@ public class Main extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Psicologos");
         treeNode1.add(treeNode2);
         jt_Equipo.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_Equipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_EquipoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jt_Equipo);
 
         jTabbedPane1.addTab("JTree", jScrollPane1);
@@ -709,6 +769,36 @@ public class Main extends javax.swing.JFrame {
         tf_Titulo_ps.setText("");
     }//GEN-LAST:event_btn_Agregar_psMouseClicked
 
+    private void jt_EquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_EquipoMouseClicked
+        if (evt.isMetaDown()) {
+            //seleccionar un nodo con click derecho
+            int row = jt_Equipo.getClosestRowForLocation(evt.getX(), evt.getY());
+            
+            jt_Equipo.setSelectionRow(row);//selecciona fila mas cercana
+            
+            Object v1 = jt_Equipo.getSelectionPath().getLastPathComponent();
+            
+            nodo_select = (DefaultMutableTreeNode) v1;
+
+            if (nodo_select.getUserObject() instanceof Persona) {//si es correcto, muestra el menu
+                persona_select = (Persona) nodo_select.getUserObject();
+                PopUp.show(evt.getComponent(),evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jt_EquipoMouseClicked
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        jd_Mod.setModal(true);
+        jd_Mod.pack();
+        jd_Mod.setLocationRelativeTo(null);
+        jd_Mod.setVisible(true);
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void jl_EquipoLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_EquipoLMouseClicked
+        DefaultListModel model = (DefaultListModel) jl_EquipoL.getModel();
+        model.addElement(jt_Equipo.getRoot);
+    }//GEN-LAST:event_jl_EquipoLMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -743,8 +833,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Listar;
+    private javax.swing.JMenuItem Modificar;
     private javax.swing.JPopupMenu PopUp;
     private javax.swing.JButton btn_Agregar;
     private javax.swing.JButton btn_Agregar_e;
@@ -781,8 +875,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JDialog jd_Mod;
+    private javax.swing.JList<String> jl_EquipoL;
     private javax.swing.JSpinner js_Contrato;
     private javax.swing.JSpinner js_Contrato_e;
     private javax.swing.JSpinner js_Contrato_p;
