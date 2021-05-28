@@ -42,6 +42,20 @@ public class Main extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jl_EquipoL = new javax.swing.JList<>();
+        jd_List = new javax.swing.JDialog();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabla_Jugadores = new javax.swing.JTable();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_Entrenadores = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabla_Preparadores = new javax.swing.JTable();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tabla_Psicologos = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -117,9 +131,19 @@ public class Main extends javax.swing.JFrame {
         PopUp.add(Modificar);
 
         Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         PopUp.add(Eliminar);
 
         Listar.setText("Listar");
+        Listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarActionPerformed(evt);
+            }
+        });
         PopUp.add(Listar);
 
         jl_EquipoL.setModel(new DefaultListModel());
@@ -152,6 +176,171 @@ public class Main extends javax.swing.JFrame {
         jd_ModLayout.setVerticalGroup(
             jd_ModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        tabla_Jugadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Nacionalidad", "Numero de Jugador", "Partidos Jugados", "Copas Ganadas", "Tarjetas amarillas y rojas", "Duracion del contrato"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tabla_Jugadores);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Lista Jugadores", jPanel7);
+
+        tabla_Entrenadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Nacionalidad", "Años de Contrato", "Copas Ganadas"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tabla_Entrenadores);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Lista Entrenadores", jPanel8);
+
+        tabla_Preparadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Nacionalidad", "ID", "Años de Contrato", "Especialidad", "Titulo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tabla_Preparadores);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1273, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Lista Preparadores Fisicos", jPanel9);
+
+        tabla_Psicologos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Nacionalidad", "Titulo", "ID", "Especialidad", "Informes generados", "Jugadores atendidos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tabla_Psicologos);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+
+        jTabbedPane2.addTab("Lista Psicologos", jPanel10);
+
+        javax.swing.GroupLayout jd_ListLayout = new javax.swing.GroupLayout(jd_List.getContentPane());
+        jd_List.getContentPane().setLayout(jd_ListLayout);
+        jd_ListLayout.setHorizontalGroup(
+            jd_ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
+        );
+        jd_ListLayout.setVerticalGroup(
+            jd_ListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -252,7 +441,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tf_Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jugadores", jPanel1);
@@ -343,7 +532,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(js_Copas_e, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(btn_Agregar_e, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Entrenadores", jPanel2);
@@ -461,7 +650,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tf_Titulo_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(btn_Agregar_p, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Preparadores", jPanel3);
@@ -571,7 +760,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(tf_Especialidad_ps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(btn_Agregar_ps)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Psicologos", jPanel4);
@@ -635,7 +824,12 @@ public class Main extends javax.swing.JFrame {
                 ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
             }
         }
+        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad));
         
+        
+        Jugadores j;
+        Object[] newrow = {j.getNombre(), j.getApellido(),
         /*if(aux == 0){
             DefaultMutableTreeNode x = new DefaultMutableTreeNode(jugadores);
             root.add(x);
@@ -686,6 +880,8 @@ public class Main extends javax.swing.JFrame {
                 ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
             }
         }
+        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Entrenadores(contrato, copas, nombre, apellido, nacionalidad, edad));
         model.reload();
         tf_Nombre_e.setText("");
         tf_Apellido_e.setText("");
@@ -722,6 +918,8 @@ public class Main extends javax.swing.JFrame {
                 ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
             }
         }
+        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Preparadores(ID, contrato, Especialidad, Titulo, nombre, apellido, nacionalidad, edad));
         model.reload();
         tf_Nombre_p.setText("");
         tf_Apellido_p.setText("");
@@ -760,6 +958,8 @@ public class Main extends javax.swing.JFrame {
                 ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
             }
         }
+        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Psicologos(Titulo, ID, Especialidad, nombre, apellido, nacionalidad, edad));
         model.reload();
         tf_Nombre_ps.setText("");
         tf_Apellido_ps.setText("");
@@ -795,9 +995,26 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void jl_EquipoLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_EquipoLMouseClicked
-        DefaultListModel model = (DefaultListModel) jl_EquipoL.getModel();
-        model.addElement(jt_Equipo.getRoot);
+        DefaultListModel list = (DefaultListModel) jl_EquipoL.getModel();
+        persona_select.setNombre(JOptionPane.showInputDialog("Nombre"));
     }//GEN-LAST:event_jl_EquipoLMouseClicked
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int response = JOptionPane.showConfirmDialog( this.getFrames()[0],"Seguro de Eliminar?","Confirm",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m = (DefaultTreeModel) jt_Equipo.getModel();
+            m.removeNodeFromParent(nodo_select);
+            m.reload();
+        }
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
+        jd_List.setModal(true);
+        jd_List.pack();
+        jd_List.setLocationRelativeTo(null);
+        jd_List.setVisible(true);
+    }//GEN-LAST:event_ListarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -872,13 +1089,23 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JDialog jd_List;
     private javax.swing.JDialog jd_Mod;
     private javax.swing.JList<String> jl_EquipoL;
     private javax.swing.JSpinner js_Contrato;
@@ -891,6 +1118,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner js_Edad_ps;
     private javax.swing.JSpinner js_Numero;
     private javax.swing.JTree jt_Equipo;
+    private javax.swing.JTable tabla_Entrenadores;
+    private javax.swing.JTable tabla_Jugadores;
+    private javax.swing.JTable tabla_Preparadores;
+    private javax.swing.JTable tabla_Psicologos;
     private javax.swing.JTextField tf_Apellido;
     private javax.swing.JTextField tf_Apellido_e;
     private javax.swing.JTextField tf_Apellido_p;
