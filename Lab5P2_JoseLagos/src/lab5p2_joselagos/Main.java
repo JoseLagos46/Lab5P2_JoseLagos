@@ -20,6 +20,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -55,6 +56,12 @@ public class Main extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Principal");
 
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
+
         jLabel1.setText("Nombre:");
 
         jLabel2.setText("Apellido:");
@@ -66,6 +73,8 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setText("Duracion del contrato:");
 
         js_Edad.setValue(20);
+
+        js_Numero.setValue(1);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipo");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Jugadores");
@@ -85,6 +94,8 @@ public class Main extends javax.swing.JFrame {
                 btn_AgregarMouseClicked(evt);
             }
         });
+
+        js_Contrato.setValue(1);
 
         jLabel6.setText("Nacionalidad:");
 
@@ -161,6 +172,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Jugadores", jPanel1);
+        jPanel1.getAccessibleContext().setAccessibleParent(jTabbedPane1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -174,6 +186,7 @@ public class Main extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Entrenadores", jPanel2);
+        jPanel2.getAccessibleContext().setAccessibleParent(this);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -218,21 +231,54 @@ public class Main extends javax.swing.JFrame {
     private void btn_AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarMouseClicked
         DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-        DefaultMutableTreeNode nodo;
+        //DefaultMutableTreeNode nodo;
+        int tab = 0;
+        if(flag == 1){
+            tab = 1;
+        }
+        int aux = 0;
         
-        nodo = new DefaultMutableTreeNode(new Jugadores((Integer)js_Numero.getValue(), (Integer)js_Contrato.getValue(), tf_Nombre.getText(), tf_Apellido.getText(), tf_Nacionalidad.getText(), (Integer)js_Edad.getValue()));
+        int numero = (Integer)js_Numero.getValue();
+        int contrato = (Integer)js_Contrato.getValue();
+        String nombre = tf_Nombre.getText();
+        String apellido = tf_Apellido.getText();
+        String nacionalidad = tf_Nacionalidad.getText();
+        int edad = (Integer)js_Edad.getValue();
         
-        DefaultMutableTreeNode numero = new DefaultMutableTreeNode((Integer)js_Numero.getValue());
-        DefaultMutableTreeNode edad = new DefaultMutableTreeNode((Integer)js_Edad.getValue());
+        Jugadores jugadores = new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad);
         
-        nodo.add(numero);
-        nodo.add(edad);
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if(root.getChildAt(i).toString().equals("Jugadores")){
+                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad));
+                
+                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
+            }
+        }
         
+        /*if(aux == 0){
+            DefaultMutableTreeNode x = new DefaultMutableTreeNode(jugadores);
+            root.add(x);
+                }*/
         model.reload();
         tf_Nombre.setText("");
         tf_Apellido.setText("");
         tf_Nacionalidad.setText("");
     }//GEN-LAST:event_btn_AgregarMouseClicked
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        if(jTabbedPane1.getSelectedIndex() == 1) {            
+            flag = 1;
+        }
+        if (jTabbedPane1.getSelectedIndex() == 2) {
+            flag = 2;
+        }
+        if (jTabbedPane1.getSelectedIndex() == 3) {
+            flag = 3;
+        }
+        if (jTabbedPane1.getSelectedIndex() == 4) {
+            flag = 4;
+        }
+    }//GEN-LAST:event_jTabbedPane1StateChanged
 
     /**
      * @param args the command line arguments
@@ -293,4 +339,5 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     DefaultMutableTreeNode nodo_select;
     Persona persona_select;
-}
+    int flag = 0;
+ }
