@@ -5,6 +5,10 @@
  */
 package lab5p2_joselagos;
 
+import com.sun.org.apache.xerces.internal.dom.ChildNode;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author tonye
@@ -27,21 +31,208 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tf_Nombre = new javax.swing.JTextField();
+        tf_Apellido = new javax.swing.JTextField();
+        js_Edad = new javax.swing.JSpinner();
+        js_Numero = new javax.swing.JSpinner();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_Equipo = new javax.swing.JTree();
+        btn_Agregar = new javax.swing.JButton();
+        js_Contrato = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        tf_Nacionalidad = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Principal");
+
+        jLabel1.setText("Nombre:");
+
+        jLabel2.setText("Apellido:");
+
+        jLabel3.setText("Edad:");
+
+        jLabel4.setText("Numero de jugador:");
+
+        jLabel5.setText("Duracion del contrato:");
+
+        js_Edad.setValue(20);
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipo");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Jugadores");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Entrenadores");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Preparadores Fisicos");
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Psicologos");
+        treeNode1.add(treeNode2);
+        jt_Equipo.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jt_Equipo);
+
+        btn_Agregar.setText("AGREGAR");
+        btn_Agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_AgregarMouseClicked(evt);
+            }
+        });
+
+        jLabel6.setText("Nacionalidad:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_Apellido))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(js_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(137, 137, 137)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(js_Numero, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                            .addComponent(js_Contrato)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_Nacionalidad)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(tf_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(js_Numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel2)
+                    .addComponent(tf_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(js_Contrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(js_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(tf_Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Jugadores", jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 708, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 479, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Entrenadores", jPanel2);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 708, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 479, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Preparadores", jPanel3);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 708, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 479, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Psicologos", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 503, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarMouseClicked
+        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        DefaultMutableTreeNode nodo;
+        
+        nodo = new DefaultMutableTreeNode(new Jugadores((Integer)js_Numero.getValue(), (Integer)js_Contrato.getValue(), tf_Nombre.getText(), tf_Apellido.getText(), tf_Nacionalidad.getText(), (Integer)js_Edad.getValue()));
+        
+        DefaultMutableTreeNode numero = new DefaultMutableTreeNode((Integer)js_Numero.getValue());
+        DefaultMutableTreeNode edad = new DefaultMutableTreeNode((Integer)js_Edad.getValue());
+        
+        nodo.add(numero);
+        nodo.add(edad);
+        
+        model.reload();
+        tf_Nombre.setText("");
+        tf_Apellido.setText("");
+        tf_Nacionalidad.setText("");
+    }//GEN-LAST:event_btn_AgregarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -54,7 +245,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -79,5 +270,27 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Agregar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JSpinner js_Contrato;
+    private javax.swing.JSpinner js_Edad;
+    private javax.swing.JSpinner js_Numero;
+    private javax.swing.JTree jt_Equipo;
+    private javax.swing.JTextField tf_Apellido;
+    private javax.swing.JTextField tf_Nacionalidad;
+    private javax.swing.JTextField tf_Nombre;
     // End of variables declaration//GEN-END:variables
+    DefaultMutableTreeNode nodo_select;
+    Persona persona_select;
 }
