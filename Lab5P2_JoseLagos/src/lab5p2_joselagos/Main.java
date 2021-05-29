@@ -8,6 +8,7 @@ package lab5p2_joselagos;
 import com.sun.org.apache.xerces.internal.dom.ChildNode;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -40,8 +41,8 @@ public class Main extends javax.swing.JFrame {
         Listar = new javax.swing.JMenuItem();
         jd_Mod = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jl_EquipoL = new javax.swing.JList<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jl_Lista = new javax.swing.JList<>();
         jd_List = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
@@ -146,25 +147,24 @@ public class Main extends javax.swing.JFrame {
         });
         PopUp.add(Listar);
 
-        jl_EquipoL.setModel(new DefaultListModel());
-        jl_EquipoL.addMouseListener(new java.awt.event.MouseAdapter() {
+        jl_Lista.setModel(new DefaultListModel()
+        );
+        jl_Lista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_EquipoLMouseClicked(evt);
+                jl_ListaMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jl_EquipoL);
+        jScrollPane7.setViewportView(jl_Lista);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jd_ModLayout = new javax.swing.GroupLayout(jd_Mod.getContentPane());
@@ -798,50 +798,39 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarMouseClicked
-        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-        //DefaultMutableTreeNode nodo;
-        int tab = 0;
-        if(flag == 1){
-            tab = 1;
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        jd_Mod.setModal(true);
+        jd_Mod.pack();
+        jd_Mod.setLocationRelativeTo(null);
+        jd_Mod.setVisible(true);     
+        DefaultListModel list = (DefaultListModel) jl_Lista.getModel();
+        list.add(0, "No pude");
+        
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        int response = JOptionPane.showConfirmDialog( this.getFrames()[0],"Seguro de Eliminar?","Confirm",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m = (DefaultTreeModel) jt_Equipo.getModel();
+            m.removeNodeFromParent(nodo_select);
+            m.reload();
         }
-        int aux = 0;
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
+        DefaultTreeModel modelo = (DefaultTreeModel) jt_Equipo.getModel();
         
-        int numero = (Integer)js_Numero.getValue();
-        int contrato = (Integer)js_Contrato.getValue();
-        String nombre = tf_Nombre.getText();
-        String apellido = tf_Apellido.getText();
-        String nacionalidad = tf_Nacionalidad.getText();
-        int edad = (Integer)js_Edad.getValue();
+        jd_List.setModal(true);
+        jd_List.pack();
+        jd_List.setLocationRelativeTo(null);
+        jd_List.setVisible(true);
         
-        Jugadores jugadores = new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad);
-        
-        for (int i = 0; i < root.getChildCount(); i++) {
-            if(root.getChildAt(i).toString().equals("Jugadores")){
-                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad));
-                
-                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
-            }
-        }
-        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
-        modelo.addElement(new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad));
-        
-        
-        Jugadores j;
-        Object[] newrow = {j.getNombre(), j.getApellido(),
-        /*if(aux == 0){
-            DefaultMutableTreeNode x = new DefaultMutableTreeNode(jugadores);
-            root.add(x);
-                }*/
-        model.reload();
-        tf_Nombre.setText("");
-        tf_Apellido.setText("");
-        tf_Nacionalidad.setText("");
-    }//GEN-LAST:event_btn_AgregarMouseClicked
+        modelo.reload();
+    }//GEN-LAST:event_ListarActionPerformed
 
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        if(jTabbedPane1.getSelectedIndex() == 1) {            
+        if(jTabbedPane1.getSelectedIndex() == 1) {
             flag = 1;
         }
         if (jTabbedPane1.getSelectedIndex() == 2) {
@@ -855,129 +844,15 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
-    private void btn_Agregar_eMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Agregar_eMouseClicked
-        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-        
-        int tab = 0;
-        if(flag == 2){
-            tab = 2;
-        }
-        int aux = 0;
-        
-        int copas = (Integer)js_Copas_e.getValue();
-        int contrato = (Integer)js_Contrato_e.getValue();
-        String nombre = tf_Nombre_e.getText();
-        String apellido = tf_Apellido_e.getText();
-        String nacionalidad = tf_Nacionalidad_e.getText();
-        int edad = (Integer)js_Edad_e.getValue();
-        
-                
-        for (int i = 0; i < root.getChildCount(); i++) {
-            if(root.getChildAt(i).toString().equals("Entrenadores")){
-                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Entrenadores(contrato, copas, nombre, apellido, nacionalidad, edad));
-                
-                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
-            }
-        }
-        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
-        modelo.addElement(new Entrenadores(contrato, copas, nombre, apellido, nacionalidad, edad));
-        model.reload();
-        tf_Nombre_e.setText("");
-        tf_Apellido_e.setText("");
-        tf_Nacionalidad_e.setText("");
-    }//GEN-LAST:event_btn_Agregar_eMouseClicked
-
-    private void tf_ID_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ID_pActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_ID_pActionPerformed
-
-    private void btn_Agregar_pMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Agregar_pMouseClicked
-        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-        
-        int tab = 0;
-        if(flag == 3){
-            tab = 3;
-        }
-        
-        String ID = tf_ID_p.getText();
-        int contrato = (Integer)js_Contrato_p.getValue();
-        String Especialidad = tf_Especialidad_p.getText();
-        String Titulo = tf_Titulo_p.getText();
-        String nombre = tf_Nombre_p.getText();
-        String apellido = tf_Apellido_p.getText();
-        String nacionalidad = tf_Nacionalidad_p.getText();
-        int edad = (Integer)js_Edad_p.getValue();
-        
-                
-        for (int i = 0; i < root.getChildCount(); i++) {
-            if(root.getChildAt(i).toString().equals("Preparadores Fisicos")){
-                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Preparadores(ID, contrato, Especialidad, Titulo, nombre, apellido, nacionalidad, edad));
-                
-                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
-            }
-        }
-        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
-        modelo.addElement(new Preparadores(ID, contrato, Especialidad, Titulo, nombre, apellido, nacionalidad, edad));
-        model.reload();
-        tf_Nombre_p.setText("");
-        tf_Apellido_p.setText("");
-        tf_Nacionalidad_p.setText("");
-        tf_ID_p.setText("");
-        tf_Especialidad_p.setText("");
-        tf_Titulo_p.setText("");
-    }//GEN-LAST:event_btn_Agregar_pMouseClicked
-
-    private void tf_ID_psActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ID_psActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_ID_psActionPerformed
-
-    private void btn_Agregar_psMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Agregar_psMouseClicked
-        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-        
-        int tab = 0;
-        if(flag == 4){
-            tab = 4;
-        }
-        
-        String ID = tf_ID_ps.getText();
-        String Especialidad = tf_Especialidad_ps.getText();
-        String Titulo = tf_Titulo_ps.getText();
-        String nombre = tf_Nombre_ps.getText();
-        String apellido = tf_Apellido_ps.getText();
-        String nacionalidad = tf_Nacionalidad_ps.getText();
-        int edad = (Integer)js_Edad_ps.getValue();
-        
-                
-        for (int i = 0; i < root.getChildCount(); i++) {
-            if(root.getChildAt(i).toString().equals("Psicologos")){
-                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Psicologos(Titulo, ID, Especialidad, nombre, apellido, nacionalidad, edad));
-                
-                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
-            }
-        }
-        DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
-        modelo.addElement(new Psicologos(Titulo, ID, Especialidad, nombre, apellido, nacionalidad, edad));
-        model.reload();
-        tf_Nombre_ps.setText("");
-        tf_Apellido_ps.setText("");
-        tf_Nacionalidad_ps.setText("");
-        tf_ID_ps.setText("");
-        tf_Especialidad_ps.setText("");
-        tf_Titulo_ps.setText("");
-    }//GEN-LAST:event_btn_Agregar_psMouseClicked
-
     private void jt_EquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_EquipoMouseClicked
         if (evt.isMetaDown()) {
             //seleccionar un nodo con click derecho
             int row = jt_Equipo.getClosestRowForLocation(evt.getX(), evt.getY());
-            
+
             jt_Equipo.setSelectionRow(row);//selecciona fila mas cercana
-            
+
             Object v1 = jt_Equipo.getSelectionPath().getLastPathComponent();
-            
+
             nodo_select = (DefaultMutableTreeNode) v1;
 
             if (nodo_select.getUserObject() instanceof Persona) {//si es correcto, muestra el menu
@@ -987,34 +862,187 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jt_EquipoMouseClicked
 
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        jd_Mod.setModal(true);
-        jd_Mod.pack();
-        jd_Mod.setLocationRelativeTo(null);
-        jd_Mod.setVisible(true);
-    }//GEN-LAST:event_ModificarActionPerformed
+    private void btn_Agregar_psMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Agregar_psMouseClicked
+        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 
-    private void jl_EquipoLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_EquipoLMouseClicked
-        DefaultListModel list = (DefaultListModel) jl_EquipoL.getModel();
-        persona_select.setNombre(JOptionPane.showInputDialog("Nombre"));
-    }//GEN-LAST:event_jl_EquipoLMouseClicked
-
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
-        int response = JOptionPane.showConfirmDialog( this.getFrames()[0],"Seguro de Eliminar?","Confirm",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-
-        if (response == JOptionPane.OK_OPTION) {
-            DefaultTreeModel m = (DefaultTreeModel) jt_Equipo.getModel();
-            m.removeNodeFromParent(nodo_select);
-            m.reload();
+        int tab = 0;
+        if(flag == 4){
+            tab = 4;
         }
-    }//GEN-LAST:event_EliminarActionPerformed
 
-    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
-        jd_List.setModal(true);
-        jd_List.pack();
-        jd_List.setLocationRelativeTo(null);
-        jd_List.setVisible(true);
-    }//GEN-LAST:event_ListarActionPerformed
+        String ID = tf_ID_ps.getText();
+        String Especialidad = tf_Especialidad_ps.getText();
+        String Titulo = tf_Titulo_ps.getText();
+        String nombre = tf_Nombre_ps.getText();
+        String apellido = tf_Apellido_ps.getText();
+        String nacionalidad = tf_Nacionalidad_ps.getText();
+        int edad = (Integer)js_Edad_ps.getValue();
+
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if(root.getChildAt(i).toString().equals("Psicologos")){
+                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Psicologos(Titulo, ID, Especialidad, nombre, apellido, nacionalidad, edad));
+
+                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
+            }
+        }
+        /*DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Psicologos(Titulo, ID, Especialidad, nombre, apellido, nacionalidad, edad));
+        model.reload();*/
+
+        Psicologos ps = new Psicologos(Titulo, ID, Especialidad, nombre, apellido, nacionalidad, edad);
+        Object[] newrow = {ps.getNombre(), ps.getApellido(),ps.getEdad(), ps.getNacionalidad(),ps.getTitulo(), ps.getID(),ps.getEspecialidad(),ps.getInformes(),ps.getAtendidos()};
+        DefaultTableModel mod = (DefaultTableModel) tabla_Psicologos.getModel();
+        mod.addRow(newrow);
+        tabla_Psicologos.setModel(mod);
+
+        tf_Nombre_ps.setText("");
+        tf_Apellido_ps.setText("");
+        tf_Nacionalidad_ps.setText("");
+        tf_ID_ps.setText("");
+        tf_Especialidad_ps.setText("");
+        tf_Titulo_ps.setText("");
+    }//GEN-LAST:event_btn_Agregar_psMouseClicked
+
+    private void tf_ID_psActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ID_psActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_ID_psActionPerformed
+
+    private void btn_Agregar_pMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Agregar_pMouseClicked
+        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+
+        int tab = 0;
+        if(flag == 3){
+            tab = 3;
+        }
+
+        String ID = tf_ID_p.getText();
+        int contrato = (Integer)js_Contrato_p.getValue();
+        String Especialidad = tf_Especialidad_p.getText();
+        String Titulo = tf_Titulo_p.getText();
+        String nombre = tf_Nombre_p.getText();
+        String apellido = tf_Apellido_p.getText();
+        String nacionalidad = tf_Nacionalidad_p.getText();
+        int edad = (Integer)js_Edad_p.getValue();
+
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if(root.getChildAt(i).toString().equals("Preparadores Fisicos")){
+                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Preparadores(ID, contrato, Especialidad, Titulo, nombre, apellido, nacionalidad, edad));
+
+                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
+            }
+        }
+        /*DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Preparadores(ID, contrato, Especialidad, Titulo, nombre, apellido, nacionalidad, edad));
+        model.reload();*/
+
+        Preparadores p = new Preparadores(ID, contrato, Especialidad, Titulo, nombre, apellido, nacionalidad, edad);
+        Object[] newrow = {p.getNombre(), p.getApellido(),p.getEdad(), p.getNacionalidad(),p.getID(), p.getContrato(),p.getEspecialidad(),p.getTitulo()};
+        DefaultTableModel mod = (DefaultTableModel) tabla_Preparadores.getModel();
+        mod.addRow(newrow);
+        tabla_Preparadores.setModel(mod);
+
+        tf_Nombre_p.setText("");
+        tf_Apellido_p.setText("");
+        tf_Nacionalidad_p.setText("");
+        tf_ID_p.setText("");
+        tf_Especialidad_p.setText("");
+        tf_Titulo_p.setText("");
+    }//GEN-LAST:event_btn_Agregar_pMouseClicked
+
+    private void tf_ID_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_ID_pActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_ID_pActionPerformed
+
+    private void btn_Agregar_eMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Agregar_eMouseClicked
+        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+
+        int tab = 0;
+        if(flag == 2){
+            tab = 2;
+        }
+        int aux = 0;
+
+        int copas = (Integer)js_Copas_e.getValue();
+        int contrato = (Integer)js_Contrato_e.getValue();
+        String nombre = tf_Nombre_e.getText();
+        String apellido = tf_Apellido_e.getText();
+        String nacionalidad = tf_Nacionalidad_e.getText();
+        int edad = (Integer)js_Edad_e.getValue();
+
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if(root.getChildAt(i).toString().equals("Entrenadores")){
+                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Entrenadores(contrato, copas, nombre, apellido, nacionalidad, edad));
+
+                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
+            }
+        }
+        /*DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Entrenadores(contrato, copas, nombre, apellido, nacionalidad, edad));
+        model.reload();*/
+
+        Entrenadores e = new Entrenadores(contrato, copas, nombre, apellido, nacionalidad, edad);
+        Object[] newrow = {e.getNombre(), e.getApellido(),e.getEdad(), e.getNacionalidad(),e.getContrato(), e.getCopas()};
+        DefaultTableModel mod = (DefaultTableModel) tabla_Entrenadores.getModel();
+        mod.addRow(newrow);
+        tabla_Entrenadores.setModel(mod);
+
+        tf_Nombre_e.setText("");
+        tf_Apellido_e.setText("");
+        tf_Nacionalidad_e.setText("");
+    }//GEN-LAST:event_btn_Agregar_eMouseClicked
+
+    private void btn_AgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_AgregarMouseClicked
+        DefaultTreeModel model = (DefaultTreeModel) jt_Equipo.getModel();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        //DefaultMutableTreeNode nodo;
+        int tab = 0;
+        if(flag == 1){
+            tab = 1;
+        }
+        int aux = 0;
+
+        int numero = (Integer)js_Numero.getValue();
+        int contrato = (Integer)js_Contrato.getValue();
+        String nombre = tf_Nombre.getText();
+        String apellido = tf_Apellido.getText();
+        String nacionalidad = tf_Nacionalidad.getText();
+        int edad = (Integer)js_Edad.getValue();
+
+        Jugadores jugadores = new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad);
+
+        for (int i = 0; i < root.getChildCount(); i++) {
+            if(root.getChildAt(i).toString().equals("Jugadores")){
+                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad));
+
+                ((DefaultMutableTreeNode) root.getChildAt(i)).add(nodo);
+            }
+        }
+        /*DefaultListModel modelo = (DefaultListModel) jl_EquipoL.getModel();
+        modelo.addElement(new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad));*/
+
+        Jugadores j = new Jugadores(numero, contrato, nombre, apellido, nacionalidad, edad);
+        Object[] newrow = {j.getNombre(), j.getApellido(),j.getEdad(), j.getNacionalidad(),j.getNum_J(), j.getPartidos(), j.getCopas(), j.getTarjetas(), j.getContrato()};
+        DefaultTableModel mod = (DefaultTableModel) tabla_Jugadores.getModel();
+        mod.addRow(newrow);
+        tabla_Jugadores.setModel(mod);
+        /*if(aux == 0){
+            DefaultMutableTreeNode x = new DefaultMutableTreeNode(jugadores);
+            root.add(x);
+        }*/
+        model.reload();
+        tf_Nombre.setText("");
+        tf_Apellido.setText("");
+        tf_Nacionalidad.setText("");
+    }//GEN-LAST:event_btn_AgregarMouseClicked
+
+    private void jl_ListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_ListaMouseClicked
+        DefaultTreeModel m = (DefaultTreeModel) jt_Equipo.getModel();
+        persona_select.setNombre(JOptionPane.showInputDialog("No pude poner los datos"));
+        m.reload();
+    }//GEN-LAST:event_jl_ListaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1098,16 +1126,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JDialog jd_List;
     private javax.swing.JDialog jd_Mod;
-    private javax.swing.JList<String> jl_EquipoL;
+    private javax.swing.JList<String> jl_Lista;
     private javax.swing.JSpinner js_Contrato;
     private javax.swing.JSpinner js_Contrato_e;
     private javax.swing.JSpinner js_Contrato_p;
@@ -1143,5 +1171,6 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     DefaultMutableTreeNode nodo_select;
     Persona persona_select;
+    DefaultListModel nod_select;
     int flag = 0;
  }
